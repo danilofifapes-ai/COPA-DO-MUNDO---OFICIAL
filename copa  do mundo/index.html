@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copas do Mundo para Colorir — Livro PDF Educativo</title>
+  <meta name="description" content="Livro PDF educativo com histórias, curiosidades e desenhos para colorir sobre as Copas do Mundo. Mais de 70 páginas de diversão e aprendizado! Por apenas R$ 19,90." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* Selection customizada */
+    ::selection { background: #facc15; color: #14532d; }
+
+    /* Scrollbar webkit */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #fefce8; }
+    ::-webkit-scrollbar-thumb { background: #16a34a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #15803d; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fefce8;
+      color: #1f2937;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: rgba(22,163,74,0.15);
+      animation: fadeInPage 0.6s ease both;
+    }
+    @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== VARIÁVEIS ===== */
+    :root {
+      --green: #16a34a;
+      --green-dark: #15803d;
+      --green-deepest: #14532d;
+      --yellow: #facc15;
+      --red: #dc2626;
+      --bg: #fefce8;
+      --text: #1f2937;
+      --text-sec: #4b5563;
+      --white: #ffffff;
+      --container: 1200px;
+    }
+
+    /* ===== UTILITÁRIOS ===== */
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .section { padding: 56px 0; }
+    h1, h2, .section-title { font-family: 'Fredoka', sans-serif; }
+
+    /* ===== KEYFRAMES GLOBAIS ===== */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(250,204,21,0.5), 0 6px 24px rgba(22,163,74,0.3); }
+      50% { box-shadow: 0 0 0 14px rgba(250,204,21,0), 0 10px 32px rgba(22,163,74,0.45); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-4deg); }
+      75% { transform: rotate(4deg); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes bounce-soft {
+      0%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+    @keyframes rotate-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.55; }
+    }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+    @keyframes book-float {
+      0%, 100% { transform: translateY(0) rotateY(-8deg) rotateX(2deg); }
+      50% { transform: translateY(-20px) rotateY(8deg) rotateX(-2deg); }
+    }
+    @keyframes shimmer-pass {
+      0% { left: -120%; }
+      100% { left: 150%; }
+    }
+    @keyframes star-float {
+      0%, 100% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.8; }
+      50% { transform: translateY(-14px) scale(1.2) rotate(20deg); opacity: 1; }
+    }
+    @keyframes confetti-fall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal-zoom {
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal.is-visible, .reveal-left.is-visible,
+    .reveal-right.is-visible, .reveal-zoom.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ===== BOTÃO CTA ===== */
+    .btn-cta {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--green);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.1rem, 3vw, 1.3rem);
+      padding: 20px 40px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      min-height: 60px;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      animation: pulse-glow 2s infinite;
+      text-align: center;
+    }
+    /* Efeito shimmer interno */
+    .btn-cta::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+      animation: shimmer-pass 3s ease infinite;
+    }
+    .btn-cta:hover, .btn-cta:focus {
+      background: var(--green-dark);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(22,163,74,0.45), 0 0 0 0 rgba(250,204,21,0);
+      animation: none;
+      outline: none;
+    }
+    .btn-cta:active { transform: translateY(0) scale(0.98); }
+
+    /* ===== BARRA DE URGÊNCIA (sticky top) ===== */
+    #urgency-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--red);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 16px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+      font-weight: 600;
+    }
+    #urgency-bar span { font-size: inherit; }
+    #countdown {
+      font-weight: 800;
+      font-size: clamp(0.9rem, 4vw, 1.05rem);
+      background: rgba(0,0,0,0.2);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative;
+      background: linear-gradient(135deg, #14532d 0%, #15803d 50%, #16a34a 100%);
+      padding: 56px 0 48px;
+      text-align: center;
+      overflow: hidden;
+    }
+    /* Textura grain via SVG noise */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Blobs decorativos amarelos */
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(250,204,21,0.18);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-blob-1 {
+      width: 340px; height: 340px;
+      top: -80px; left: -100px;
+      animation: float 8s ease-in-out infinite;
+    }
+    .hero-blob-2 {
+      width: 280px; height: 280px;
+      bottom: -60px; right: -80px;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+    .hero-blob-3 {
+      width: 200px; height: 200px;
+      top: 50%; right: 10%;
+      animation: float 7s ease-in-out infinite 2s;
+    }
+    #hero .container { position: relative; z-index: 1; }
+
+    #hero .badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--green-deepest);
+      font-weight: 700;
+      font-size: clamp(0.8rem, 3vw, 0.9rem);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(250,204,21,0.5);
+      animation: bounce-soft 3s ease infinite;
+    }
+    #hero h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(1.8rem, 6vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 16px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #hero h1 span { color: var(--yellow); }
+    #hero .subtitle {
+      font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+
+    /* CAPA DO LIVRO 3D */
+    .hero-book-scene {
+      perspective: 1000px;
+      margin: 0 auto 36px;
+      max-width: 280px;
+    }
+    .hero-book-wrap {
+      position: relative;
+      transform-style: preserve-3d;
+      animation: book-float 6s ease-in-out infinite;
+      border-radius: 16px;
+      box-shadow: 0 40px 60px -20px rgba(0,0,0,0.5);
+    }
+    .hero-book-wrap:hover {
+      animation-play-state: paused;
+      transform: translateY(-8px) rotateY(0deg) scale(1.05);
+      transition: transform 0.4s ease;
+    }
+    .hero-book-wrap img {
+      border-radius: 16px;
+      display: block;
+      width: 100%;
+    }
+    /* Reflexo shimmer sobre a capa */
+    .hero-book-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.08) 100%);
+      background-size: 200% 200%;
+      animation: shimmer 4s linear infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+    /* Badge PDF girando */
+    .book-pdf-badge {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 52px;
+      height: 52px;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--green-deepest);
+      box-shadow: 0 4px 12px rgba(250,204,21,0.5);
+      animation: rotate-slow 6s linear infinite;
+      z-index: 3;
+    }
+    /* Estrelinhas */
+    .book-star {
+      position: absolute;
+      font-size: 1.4rem;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .book-star-1 { top: -8px; left: -18px; animation: star-float 3s ease-in-out infinite; }
+    .book-star-2 { bottom: 10px; left: -22px; animation: star-float 4s ease-in-out infinite 0.5s; }
+    .book-star-3 { bottom: -10px; right: 20px; animation: star-float 3.5s ease-in-out infinite 1s; }
+
+    /* CONTAINER VÍDEO */
+    .hero-video-wrap {
+      max-width: 640px;
+      margin: 0 auto 36px;
+      position: relative;
+    }
+    .hero-video-container {
+      position: relative;
+      aspect-ratio: 16/9;
+      border-radius: 20px;
+      border: 4px solid var(--yellow);
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+      cursor: pointer;
+    }
+    .hero-video-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-video-container iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
+    }
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(250,204,21,0.5);
+      animation: pulse-glow 2s infinite;
+      z-index: 2;
+      transition: transform 0.2s ease;
+    }
+    .play-btn:hover { transform: translate(-50%, -50%) scale(1.1); }
+    .play-btn svg { width: 32px; height: 32px; margin-left: 4px; }
+
+    .hero-pricing { margin-bottom: 28px; }
+    .price-old {
+      font-size: clamp(0.9rem, 3vw, 1rem);
+      color: rgba(255,255,255,0.6);
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+    .price-new {
+      font-size: clamp(2rem, 8vw, 3rem);
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+    .price-new small {
+      font-size: clamp(1rem, 4vw, 1.4rem);
+      vertical-align: top;
+      margin-top: 6px;
+      display: inline-block;
+    }
+    .hero-cta-wrap { max-width: 480px; margin: 0 auto; }
+
+    /* ===== O QUE VOCÊ VAI ENCONTRAR ===== */
+    #features {
+      background: var(--white);
+      text-align: center;
+    }
+    .section-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(1.5rem, 5vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .section-subtitle {
+      font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+      color: var(--text-sec);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .feature-card {
+      background: var(--bg);
+      border-radius: 14px;
+      padding: 24px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .feature-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
+    .feature-card .icon { font-size: 2rem; flex-shrink: 0; line-height: 1; }
+    .feature-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(0.95rem, 3vw, 1rem);
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ===== PREVIEW ===== */
+    #preview {
+      background: #f0fdf4;
+      text-align: center;
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .preview-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .preview-card:hover { transform: scale(1.04); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .preview-card img { width: 100%; border-radius: 12px; }
+    .preview-label {
+      font-size: clamp(0.75rem, 2.8vw, 0.85rem);
+      color: var(--text-sec);
+      margin-top: 6px;
+      font-weight: 600;
+    }
+    .preview-more {
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    /* ===== PERFEITO PARA ===== */
+    #for-whom { background: var(--white); }
+    #for-whom .section-title { text-align: center; }
+    #for-whom .section-subtitle { text-align: center; }
+    .for-list { display: flex; flex-direction: column; gap: 14px; max-width: 640px; margin: 0 auto; }
+    .for-item {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-size: clamp(0.9rem, 3vw, 1rem);
+      font-weight: 600;
+      color: var(--text);
+      transition: transform 0.2s ease;
+    }
+    .for-item:hover { transform: translateX(4px); }
+    .for-item .icon { font-size: 2rem; flex-shrink: 0; }
+
+    /* ===== POR QUE É DIFERENTE ===== */
+    #why { background: var(--bg); text-align: center; }
+    .why-list {
+      list-style: none;
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+    .why-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
+      line-height: 1.6;
+      background: var(--white);
+      border-radius: 10px;
+      padding: 14px 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+    .why-list li:hover { transform: translateX(4px); }
+    .why-list li span { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+
+    /* ===== OFERTA FINAL ===== */
+    #offer {
+      position: relative;
+      background: linear-gradient(135deg, #14532d, #15803d, #16a34a, #15803d, #14532d);
+      background-size: 300% 300%;
+      animation: gradient-shift 8s ease infinite;
+      text-align: center;
+      padding: 80px 0;
+      overflow: hidden;
+    }
+    /* Confetes */
+    .confetti-wrap {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .confetti-dot {
+      position: absolute;
+      top: -20px;
+      border-radius: 3px;
+      animation: confetti-fall linear infinite;
+    }
+    #offer .container { position: relative; z-index: 1; }
+
+    .offer-badge {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-weight: 800;
+      font-size: clamp(0.85rem, 3.5vw, 1rem);
+      padding: 8px 20px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      animation: blink 1.6s step-end infinite;
+    }
+    #offer h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(1.6rem, 5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #offer .offer-subtitle {
+      color: rgba(255,255,255,0.85);
+      font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+      margin-bottom: 28px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .offer-price-old {
+      font-size: clamp(1rem, 4vw, 1.1rem);
+      color: rgba(255,255,255,0.6);
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+    .offer-price-new {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(2.8rem, 12vw, 4.5rem);
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 32px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.25);
+      animation: breathe 3s ease-in-out infinite;
+      display: inline-block;
+    }
+    .offer-price-new small {
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      vertical-align: top;
+      margin-top: 8px;
+      display: inline-block;
+    }
+    .offer-cta-wrap { max-width: 480px; margin: 0 auto 36px; }
+    .offer-cta-wrap .btn-cta {
+      background: var(--yellow);
+      color: var(--green-deepest);
+      font-size: clamp(1.1rem, 4vw, 1.3rem);
+    }
+    .offer-cta-wrap .btn-cta:hover {
+      background: #f59e0b;
+      color: var(--green-deepest);
+    }
+    .seals {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .seal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: rgba(255,255,255,0.9);
+      font-size: clamp(0.75rem, 2.8vw, 0.85rem);
+      font-weight: 600;
+      min-width: 80px;
+    }
+    .seal .seal-icon { font-size: 1.8rem; }
+
+    /* ===== GARANTIA ===== */
+    #guarantee { background: var(--white); text-align: center; }
+    .guarantee-badge {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      color: var(--white);
+      box-shadow: 0 8px 28px rgba(22,163,74,0.35);
+      animation: float 4s ease-in-out infinite;
+    }
+    .guarantee-badge .g-days {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .guarantee-badge .g-text {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 0 8px;
+    }
+    #guarantee h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    #guarantee p {
+      font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+      color: var(--text-sec);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ===== FAQ ===== */
+    #faq {
+      background: #f0fdf4;
+      text-align: center;
+    }
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      text-align: left;
+    }
+    .faq-item {
+      background: var(--white);
+      border: 2px solid #dcfce7;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .faq-item:hover {
+      box-shadow: 0 6px 20px rgba(22,163,74,0.12);
+    }
+    .faq-item.is-open {
+      border-color: var(--green);
+    }
+    .faq-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Remove marcador nativo do <summary> */
+    .faq-summary::-webkit-details-marker { display: none; }
+    .faq-summary { list-style: none; }
+
+    .faq-question {
+      font-weight: 600;
+      color: #14532d;
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #dcfce7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .faq-item.is-open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--green);
+      color: var(--white);
+    }
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      padding: 0 24px;
+      transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.35s ease,
+                  padding 0.3s ease;
+    }
+    .faq-item.is-open .faq-body {
+      max-height: 300px;
+      opacity: 1;
+      padding: 0 24px 20px;
+    }
+    .faq-answer {
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      color: var(--text-sec);
+      line-height: 1.7;
+      border-top: 1px solid #f0fdf4;
+      padding-top: 14px;
+    }
+    /* CTA do FAQ */
+    .faq-cta-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #14532d 0%, #16a34a 100%);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(22,163,74,0.25);
+    }
+    .faq-cta-box p {
+      color: rgba(255,255,255,0.92);
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      line-height: 1.65;
+      margin-bottom: 24px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .faq-cta-box .btn-cta {
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    /* ===== CTA FIXO MOBILE (sticky bottom) ===== */
+    #sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: var(--white);
+      border-top: 2px solid #e5e7eb;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+      padding: 10px 16px 12px;
+    }
+    #sticky-cta .sticky-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    #sticky-cta .sticky-price { flex-shrink: 0; }
+    #sticky-cta .sticky-old {
+      font-size: 0.7rem;
+      color: var(--text-sec);
+      text-decoration: line-through;
+    }
+    #sticky-cta .sticky-new {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      font-family: 'Fredoka', sans-serif;
+    }
+    #sticky-cta .btn-cta {
+      flex: 1;
+      font-size: 0.95rem;
+      padding: 14px 16px;
+      min-height: 48px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1f2937;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 32px 16px;
+      font-size: clamp(0.75rem, 3vw, 0.85rem);
+    }
+    footer p { margin-bottom: 8px; line-height: 1.7; }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    footer .footer-links a { color: rgba(255,255,255,0.55); transition: color 0.2s; }
+    footer .footer-links a:hover { color: var(--white); }
+
+    /* ===== RESPONSIVE — TABLET (640px+) ===== */
+    @media (min-width: 640px) {
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .preview-grid { grid-template-columns: repeat(4, 1fr); }
+      .hero-book-scene { max-width: 320px; }
+    }
+
+    /* ===== RESPONSIVE — DESKTOP (1024px+) ===== */
+    @media (min-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero-book-scene { max-width: 380px; }
+      #hero { padding: 80px 0 72px; }
+      .section { padding: 80px 0; }
+    }
+
+    /* ===== STICKY CTA — SOMENTE MOBILE ===== */
+    @media (max-width: 767px) {
+      #sticky-cta { display: block; }
+      footer { padding-bottom: 90px; }
+    }
+
+    /* ===== ACESSIBILIDADE: prefers-reduced-motion ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      .reveal, .reveal-left, .reveal-right, .reveal-zoom {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== BARRA DE URGÊNCIA ===== -->
+  <div id="urgency-bar" role="banner">
+    <span>🔥 OFERTA POR TEMPO LIMITADO! Termina em:</span>
+    <span id="countdown">07:35</span>
+  </div>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section id="hero">
+      <!-- Blobs decorativos -->
+      <div class="hero-blob hero-blob-1"></div>
+      <div class="hero-blob hero-blob-2"></div>
+      <div class="hero-blob hero-blob-3"></div>
+
+      <div class="container">
+        <div class="badge reveal">📚 Mais de 70 páginas!</div>
+        <h1 class="reveal" style="transition-delay:0.1s">
+          Histórias e Curiosidades das <span>Copas do Mundo</span> para Colorir
+        </h1>
+        <p class="subtitle reveal" style="transition-delay:0.2s">
+          Um livro incrível em PDF que une educação e diversão com desenhos para colorir sobre a história dos mundiais!
+        </p>
+
+        <!-- Capa 3D -->
+        <div class="hero-book-scene reveal-zoom" style="transition-delay:0.3s">
+          <div class="hero-book-wrap">
+            <img src="https://placehold.co/400x500/16a34a/ffffff?text=Capa+do+Livro"
+                 alt="Capa do livro Copas do Mundo para Colorir"
+                 width="400" height="500" />
+            <div class="book-pdf-badge">PDF</div>
+            <span class="book-star book-star-1">✨</span>
+            <span class="book-star book-star-2">⭐</span>
+            <span class="book-star book-star-3">✨</span>
+          </div>
+        </div>
+
+        <!-- Vídeo -->
+        <div class="hero-video-wrap reveal" style="transition-delay:0.4s">
+          <div class="hero-video-container" id="video-container">
+            <img src="https://placehold.co/640x360/15803d/facc15?text=Vídeo"
+                 alt="Prévia do livro em vídeo" id="video-thumb" />
+            <!-- Cole o src do iframe quando tiver o link do vídeo -->
+            <iframe id="video-iframe" data-src="" allowfullscreen></iframe>
+            <div class="play-btn" id="play-btn" aria-label="Reproduzir vídeo">
+              <svg viewBox="0 0 24 24" fill="#14532d">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-pricing reveal" style="transition-delay:0.5s">
+          <p class="price-old">De R$ 39,90</p>
+          <p class="price-new"><small>R$</small> 19,90</p>
+        </div>
+
+        <div class="hero-cta-wrap reveal" style="transition-delay:0.6s">
+          <a href="#offer" class="btn-cta">🎨 Baixe Agora</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== O QUE VOCÊ VAI ENCONTRAR ===== -->
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">O Que Você Vai Encontrar?</h2>
+        <p class="section-subtitle reveal" style="transition-delay:0.1s">Cada tema vem acompanhado de ilustrações para colorir, tornando o aprendizado muito mais divertido e interativo!</p>
+
+        <div class="features-grid">
+          <div class="feature-card reveal" style="transition-delay:0.05s"><span class="icon">🏆</span><h3>A história das Copas do Mundo</h3></div>
+          <div class="feature-card reveal" style="transition-delay:0.10s"><span class="icon">🌍</span><h3>Países-sede de cada edição</h3></div>
+          <div class="feature-card reveal" style="transition-delay:0.15s"><span class="icon">⭐</span><h3>Seleções campeãs</h3></div>
+          <div class="feature-card reveal" style="transition-delay:0.20s"><span class="icon">🏟️</span><h3>Estádios históricos</h3></div>
+          <div class="feature-card reveal" style="transition-delay:0.25s"><span class="icon">🎨</span><h3>Logos oficiais</h3></div>
+          <div class="feature-card reveal" style="transition-delay:0.30s"><span class="icon">🐾</span><h3>Mascotes marcantes</h3></div>
+          <div class="feature-card reveal" style="transition-delay:0.35s"><span class="icon">⚽</span><h3>Bolas icônicas de cada Copa</h3></div>
+          <div class="feature-card reveal" style="transition-delay:0.40s"><span class="icon">🥇</span><h3>Artilheiros históricos dos mundiais</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VEJA ALGUMAS PÁGINAS ===== -->
+    <section id="preview" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Veja Algumas Páginas</h2>
+        <p class="section-subtitle reveal" style="transition-delay:0.1s">Ilustrações feitas para encantar e ensinar ao mesmo tempo!</p>
+
+        <div class="preview-grid">
+          <div class="reveal" style="transition-delay:0.05s">
+            <div class="preview-card">
+              <img src="https://placehold.co/300x400/fefce8/16a34a?text=Curiosidades" alt="Preview Curiosidades" width="300" height="400" />
+            </div>
+            <p class="preview-label">Curiosidades e Histórias das Copas</p>
+          </div>
+          <div class="reveal" style="transition-delay:0.15s">
+            <div class="preview-card">
+              <img src="https://placehold.co/300x400/fefce8/16a34a?text=Estádios" alt="Preview Estádios" width="300" height="400" />
+            </div>
+            <p class="preview-label">Estádios Históricos</p>
+          </div>
+          <div class="reveal" style="transition-delay:0.25s">
+            <div class="preview-card">
+              <img src="https://placehold.co/300x400/fefce8/16a34a?text=Campeões" alt="Preview Campeões" width="300" height="400" />
+            </div>
+            <p class="preview-label">Países Campeões da Copa</p>
+          </div>
+          <div class="reveal" style="transition-delay:0.35s">
+            <div class="preview-card">
+              <img src="https://placehold.co/300x400/fefce8/16a34a?text=Momentos" alt="Preview Momentos" width="300" height="400" />
+            </div>
+            <p class="preview-label">Momentos Históricos</p>
+          </div>
+        </div>
+
+        <p class="preview-more reveal" style="transition-delay:0.4s">✨ E muito mais!</p>
+      </div>
+    </section>
+
+    <!-- ===== PERFEITO PARA ===== -->
+    <section id="for-whom" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Perfeito Para</h2>
+        <p class="section-subtitle reveal" style="transition-delay:0.1s">Este material foi pensado para quem quer aprender e se divertir ao mesmo tempo!</p>
+
+        <div class="for-list">
+          <div class="for-item reveal-left" style="transition-delay:0.05s"><span class="icon">👧</span> Crianças apaixonadas por futebol</div>
+          <div class="for-item reveal-left" style="transition-delay:0.15s"><span class="icon">👨‍👩‍👧</span> Pais que querem reduzir o tempo de tela dos filhos</div>
+          <div class="for-item reveal-left" style="transition-delay:0.25s"><span class="icon">👩‍🏫</span> Professores que buscam material educativo</div>
+          <div class="for-item reveal-left" style="transition-delay:0.35s"><span class="icon">🎓</span> Quem quer aprender se divertindo</div>
+          <div class="for-item reveal-left" style="transition-delay:0.45s"><span class="icon">🎁</span> Presentear com algo criativo e diferente</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== POR QUE É DIFERENTE ===== -->
+    <section id="why" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Por Que Esse Material É Diferente?</h2>
+        <p class="section-subtitle reveal" style="transition-delay:0.1s">Desenvolvido para entregar valor real e transformar a experiência de aprender sobre o futebol.</p>
+
+        <ul class="why-list">
+          <li class="reveal-right" style="transition-delay:0.05s"><span>✅</span> Une educação + diversão de forma natural e envolvente</li>
+          <li class="reveal-right" style="transition-delay:0.15s"><span>✅</span> Estimula criatividade e coordenação motora nas crianças</li>
+          <li class="reveal-right" style="transition-delay:0.25s"><span>✅</span> Conteúdo organizado e fácil de entender para todas as idades</li>
+          <li class="reveal-right" style="transition-delay:0.35s"><span>✅</span> Inclui artilheiros históricos das Copas do Mundo</li>
+          <li class="reveal-right" style="transition-delay:0.45s"><span>✅</span> Pronto para imprimir e usar imediatamente após o download</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== OFERTA FINAL ===== -->
+    <section id="offer">
+      <!-- Confetes decorativos (gerados via JS) -->
+      <div class="confetti-wrap" id="confetti-wrap"></div>
+
+      <div class="container">
+        <div class="offer-badge reveal">🔥 SOMENTE HOJE! 50% DE DESCONTO</div>
+
+        <h2 class="reveal" style="transition-delay:0.1s">Garanta Agora o Seu Livro Digital!</h2>
+        <p class="offer-subtitle reveal" style="transition-delay:0.2s">Compre e receba na hora o PDF para imprimir quantas vezes quiser!</p>
+
+        <p class="offer-price-old reveal" style="transition-delay:0.3s">De R$ 39,90</p>
+        <p class="offer-price-new reveal" style="transition-delay:0.35s"><small>R$</small> 19,90</p>
+
+        <div class="offer-cta-wrap reveal" style="transition-delay:0.4s">
+          <a href="#" class="btn-cta">🎨 Garanta Agora o Seu!</a>
+        </div>
+
+        <div class="seals reveal" style="transition-delay:0.5s">
+          <div class="seal"><span class="seal-icon">🛡️</span><span>Garantia 7 dias</span></div>
+          <div class="seal"><span class="seal-icon">⚡</span><span>Download imediato</span></div>
+          <div class="seal"><span class="seal-icon">🔒</span><span>Pagamento seguro</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Perguntas Frequentes</h2>
+        <p class="section-subtitle reveal" style="transition-delay:0.1s">Tire suas dúvidas antes de garantir o seu</p>
+
+        <div class="faq-list">
+
+          <div class="faq-item reveal" style="transition-delay:0.0s">
+            <div class="faq-summary" role="button" aria-expanded="false" tabindex="0">
+              <span class="faq-question">Como funciona a entrega do livro?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-body">
+              <p class="faq-answer">A entrega é 100% digital e imediata! Assim que o pagamento for confirmado, você recebe o PDF no seu e-mail e pode baixar quantas vezes quiser para imprimir em casa, na gráfica ou no trabalho.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" style="transition-delay:0.1s">
+            <div class="faq-summary" role="button" aria-expanded="false" tabindex="0">
+              <span class="faq-question">Posso imprimir em quantas folhas quiser?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-body">
+              <p class="faq-answer">Sim! O arquivo é seu para sempre. Imprima quantas vezes precisar, para quantas crianças quiser, sem limites.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" style="transition-delay:0.2s">
+            <div class="faq-summary" role="button" aria-expanded="false" tabindex="0">
+              <span class="faq-question">Preciso de alguma habilidade técnica para usar?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-body">
+              <p class="faq-answer">Não! Basta ter um celular, tablet ou computador para abrir o PDF. Se quiser imprimir, é só mandar para uma impressora comum ou gráfica.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" style="transition-delay:0.3s">
+            <div class="faq-summary" role="button" aria-expanded="false" tabindex="0">
+              <span class="faq-question">Para qual idade é indicado?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-body">
+              <p class="faq-answer">O livro é indicado para crianças a partir de 5 anos, mas pode ser aproveitado por toda a família. Pais e professores também adoram usar como material educativo.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" style="transition-delay:0.4s">
+            <div class="faq-summary" role="button" aria-expanded="false" tabindex="0">
+              <span class="faq-question">E se eu não gostar do material?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-body">
+              <p class="faq-answer">Você tem 7 dias de garantia incondicional. Se por qualquer motivo não gostar, basta enviar um e-mail e devolvemos 100% do seu dinheiro, sem perguntas.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" style="transition-delay:0.5s">
+            <div class="faq-summary" role="button" aria-expanded="false" tabindex="0">
+              <span class="faq-question">Quais formas de pagamento são aceitas?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-body">
+              <p class="faq-answer">Aceitamos cartão de crédito em até 12x, PIX com desconto, boleto bancário e carteiras digitais. O ambiente de pagamento é 100% seguro e criptografado.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" style="transition-delay:0.6s">
+            <div class="faq-summary" role="button" aria-expanded="false" tabindex="0">
+              <span class="faq-question">O conteúdo é atualizado com as últimas Copas?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-body">
+              <p class="faq-answer">Sim! O livro inclui todas as Copas do Mundo até a edição mais recente, com curiosidades, campeões, estádios, mascotes e artilheiros históricos.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" style="transition-delay:0.7s">
+            <div class="faq-summary" role="button" aria-expanded="false" tabindex="0">
+              <span class="faq-question">Depois de comprar, perco o acesso depois de um tempo?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-body">
+              <p class="faq-answer">Não! O acesso é vitalício. Você baixa o PDF uma vez e ele fica com você para sempre no seu dispositivo.</p>
+            </div>
+          </div>
+
+        </div><!-- /.faq-list -->
+
+        <!-- CTA do FAQ -->
+        <div class="faq-cta-box reveal" style="transition-delay:0.15s">
+          <p>Ainda com dúvidas? Garanta agora com 7 dias de garantia — se não gostar, devolvemos seu dinheiro.</p>
+          <a href="#offer" class="btn-cta">🎨 Quero meu livro</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== GARANTIA ===== -->
+    <section id="guarantee" class="section">
+      <div class="container">
+        <div class="guarantee-badge reveal-zoom">
+          <span class="g-days">7</span>
+          <span class="g-text">DIAS DE GARANTIA</span>
+        </div>
+        <h2 class="reveal" style="transition-delay:0.1s">Garantia Total de 7 Dias</h2>
+        <p class="reveal" style="transition-delay:0.2s">Se não gostar, devolvemos 100% do seu dinheiro. Sem complicação, sem burocracia — sua satisfação é a nossa prioridade!</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== CTA FIXO MOBILE ===== -->
+  <div id="sticky-cta" aria-hidden="true">
+    <div class="sticky-inner">
+      <div class="sticky-price">
+        <div class="sticky-old">R$ 39,90</div>
+        <div class="sticky-new">R$ 19,90</div>
+      </div>
+      <a href="#offer" class="btn-cta">🎨 Garanta Agora</a>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2024 Copas do Mundo para Colorir. Todos os direitos reservados.</p>
+    <p>Pagamento processado com segurança 🔒</p>
+    <div class="footer-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Privacidade</a>
+      <a href="#">Contato</a>
+    </div>
+  </footer>
+
+  <script>
+    /* ===== TIMER REGRESSIVO ===== */
+    (function () {
+      var el = document.getElementById('countdown');
+      var totalSeconds = 7 * 60 + 35;
+      function pad(n) { return String(n).padStart(2, '0'); }
+      function tick() {
+        if (totalSeconds <= 0) totalSeconds = 7 * 60 + 35;
+        el.textContent = pad(Math.floor(totalSeconds / 60)) + ':' + pad(totalSeconds % 60);
+        totalSeconds--;
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    /* ===== SMOOTH SCROLL para CTAs ===== */
+    document.querySelectorAll('a[href="#offer"]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('offer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    /* ===== ESCONDER STICKY CTA ao ver seção OFFER ===== */
+    (function () {
+      var stickyCta = document.getElementById('sticky-cta');
+      var offerSection = document.getElementById('offer');
+      if (!stickyCta || !offerSection) return;
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          stickyCta.style.display = e.isIntersecting ? 'none' : '';
+        });
+      }, { threshold: 0.1 }).observe(offerSection);
+    })();
+
+    /* ===== SCROLL REVEAL ===== */
+    (function () {
+      var selectors = '.reveal, .reveal-left, .reveal-right, .reveal-zoom';
+      var elements = document.querySelectorAll(selectors);
+      if (!elements.length) return;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      elements.forEach(function (el) { observer.observe(el); });
+    })();
+
+    /* ===== PLAY BUTTON DO VÍDEO ===== */
+    (function () {
+      var container = document.getElementById('video-container');
+      var thumb = document.getElementById('video-thumb');
+      var iframe = document.getElementById('video-iframe');
+      var playBtn = document.getElementById('play-btn');
+      if (!container || !iframe) return;
+      container.addEventListener('click', function () {
+        var src = iframe.getAttribute('data-src');
+        if (!src) return; // sem vídeo ainda — remova este return quando colar o link
+        iframe.src = src + (src.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1';
+        iframe.style.display = 'block';
+        if (thumb) thumb.style.display = 'none';
+        if (playBtn) playBtn.style.display = 'none';
+      });
+    })();
+
+    /* ===== ACCORDION FAQ ===== */
+    (function () {
+      document.querySelectorAll('.faq-item').forEach(function (item) {
+        var summary = item.querySelector('.faq-summary');
+        if (!summary) return;
+        summary.addEventListener('click', function () {
+          var isOpen = item.classList.contains('is-open');
+          /* Fecha todos os outros */
+          document.querySelectorAll('.faq-item.is-open').forEach(function (other) {
+            other.classList.remove('is-open');
+            other.querySelector('.faq-summary').setAttribute('aria-expanded', 'false');
+          });
+          /* Alterna o clicado */
+          if (!isOpen) {
+            item.classList.add('is-open');
+            summary.setAttribute('aria-expanded', 'true');
+          }
+        });
+        /* Acessibilidade: tecla Enter/Space */
+        summary.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            summary.click();
+          }
+        });
+      });
+    })();
+
+    /* ===== CONFETES NA SEÇÃO OFERTA ===== */
+    (function () {
+      var wrap = document.getElementById('confetti-wrap');
+      if (!wrap) return;
+      var colors = ['#facc15','#ffffff','#86efac','#fde68a','#a7f3d0'];
+      for (var i = 0; i < 28; i++) {
+        var dot = document.createElement('div');
+        dot.className = 'confetti-dot';
+        var size = Math.random() * 8 + 5;
+        dot.style.cssText = [
+          'left:' + Math.random() * 100 + '%',
+          'width:' + size + 'px',
+          'height:' + (size * (Math.random() + 0.5)) + 'px',
+          'background:' + colors[Math.floor(Math.random() * colors.length)],
+          'opacity:' + (Math.random() * 0.5 + 0.3),
+          'animation-duration:' + (Math.random() * 6 + 5) + 's',
+          'animation-delay:' + (Math.random() * 6) + 's',
+          'border-radius:' + (Math.random() > 0.5 ? '50%' : '2px')
+        ].join(';');
+        wrap.appendChild(dot);
+      }
+    })();
+  </script>
+
+</body>
+</html>
